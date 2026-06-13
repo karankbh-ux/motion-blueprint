@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Motion Blueprint">
+<title>Motion Blueprint — Karan Block 1</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --em:#0F6E56;--eml:#E1F5EE;--emm:#1D9E75;--emd:#085041;--emt:#04342C;
+  --bam:#BA7517;--baml:#FAEEDA;--bamm:#EF9F27;--bamd:#854F0B;--bamt:#412402;
+  --wr:#791F1F;--wrl:#FCEBEB;
+  --bg:#f0f4f1;
+  --card:#ffffff;
+  --text:#1a1a1a;
+  --text2:#666666;
+  --text3:#999999;
+  --border:rgba(0,0,0,0.1);
+  --border2:rgba(0,0,0,0.18);
+  --surf:#f5f5f5;
+  --r:14px;--rsm:10px;--rpill:20px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0d1410;
+    --card:#1c2420;
+    --text:#e8f0ec;
+    --text2:#8a9e94;
+    --text3:#556860;
+    --border:rgba(255,255,255,0.1);
+    --border2:rgba(255,255,255,0.18);
+    --surf:#242e2a;
+    --eml:#0d2e22;--emd:#9FE1CB;--emt:#c8f0e0;
+    --baml:#2e1f00;--bamd:#FAC775;--bamt:#fdebc0;
+    --wrl:#2e0e0e;--wr:#f09595;
+  }
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',sans-serif;font-size:16px;line-height:1.4;overscroll-behavior:none}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.app{max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:var(--bg)}
+
+/* NAV */
+.nav{background:var(--em);padding:16px 16px 13px;padding-top:max(16px,env(safe-area-inset-top))}
+.nt{font-size:18px;font-weight:600;color:#E1F5EE;letter-spacing:-0.3px}
+.ns{font-size:12px;color:#9FE1CB;margin-top:2px}
+.nav-row{display:flex;align-items:center;gap:12px;background:var(--em);padding:16px 16px 13px;padding-top:max(16px,env(safe-area-inset-top))}
+.bb{border:none;background:none;color:#9FE1CB;font-size:15px;display:flex;align-items:center;gap:3px;cursor:pointer;padding:4px 0;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.bb i{font-size:22px}
+
+/* TABS */
+.tabs{display:flex;background:var(--card);border-bottom:0.5px solid var(--border);flex-shrink:0}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:10px 4px 8px;border:none;background:none;color:var(--text3);font-size:11px;font-family:inherit;border-bottom:2px solid transparent;-webkit-tap-highlight-color:transparent}
+.tab.on{color:var(--em);border-bottom-color:var(--em)}
+.tab i{font-size:22px}
+
+/* WEEK PILLS */
+.wpills{display:flex;gap:6px;overflow-x:auto;padding:10px 0 4px;scrollbar-width:none}
+.wpills::-webkit-scrollbar{display:none}
+.wpill{padding:5px 14px;border-radius:var(--rpill);font-size:13px;border:1px solid rgba(255,255,255,0.3);background:transparent;color:#9FE1CB;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.wpill.on{background:var(--bam);color:#fff;border-color:var(--bam)}
+
+/* LAYOUT */
+.pg{display:none;flex:1;overflow-y:auto}
+.pg.on{display:block}
+.sgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:14px}
+.sc{background:var(--card);border-radius:var(--r);border:0.5px solid var(--border);padding:16px;text-align:center}
+.sv{font-size:28px;font-weight:600;color:var(--em)}
+.sl{font-size:11px;color:var(--text2);margin-top:3px}
+.slbl{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.6px;padding:16px 15px 8px}
+.card{background:var(--card);border-radius:var(--r);border:0.5px solid var(--border);margin:0 14px 12px;overflow:hidden}
+
+/* DAY ROWS */
+.dr{padding:14px 15px;display:flex;align-items:center;gap:12px;cursor:pointer;border-bottom:0.5px solid var(--border);-webkit-tap-highlight-color:transparent}
+.dr:last-child{border-bottom:none}
+.dr:active{background:var(--eml)}
+.di{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:var(--eml)}
+.dn{font-size:15px;font-weight:500;color:var(--text)}
+.df{font-size:12px;color:var(--text2);margin-top:2px}
+.pb{height:3px;background:var(--border);border-radius:2px;margin-top:7px;overflow:hidden}
+.pf{height:100%;background:var(--em);border-radius:2px;transition:width 0.3s}
+.dbg{font-size:11px;padding:4px 9px;border-radius:var(--rpill);white-space:nowrap;flex-shrink:0}
+.bem{background:var(--eml);color:var(--emd)}
+.bgr{background:var(--surf);color:var(--text2)}
+.nbox{margin:0 14px 14px;background:var(--eml);border-radius:var(--r);padding:13px 15px;font-size:13px;color:var(--emt);line-height:1.65}
+
+/* SECTION HEADER */
+.slh{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;padding:10px 15px 8px;background:var(--eml);color:var(--emd);border-bottom:0.5px solid var(--border)}
+
+/* EXERCISE ROWS */
+.er{padding:13px 15px;border-bottom:0.5px solid var(--border);display:flex;align-items:flex-start;gap:10px}
+.er:last-child{border-bottom:none}
+.er:active{background:var(--eml)}
+.em{flex:1;min-width:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.en{font-size:15px;font-weight:500;color:var(--text)}
+.ed{font-size:12px;color:var(--text2);margin-top:3px;line-height:1.4}
+.ew{font-size:11px;color:var(--wr);margin-top:5px;display:flex;align-items:flex-start;gap:3px;line-height:1.4}
+.ew i{flex-shrink:0;margin-top:1px}
+.el{font-size:12px;color:var(--em);display:flex;align-items:center;gap:3px;margin-top:5px;font-weight:500}
+.ea{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;padding-top:2px}
+.ib{border:none;background:none;cursor:pointer;padding:5px;display:flex;align-items:center;justify-content:center;border-radius:9px;color:var(--text3);-webkit-tap-highlight-color:transparent}
+.ib:active{background:var(--surf)}
+.ab{font-size:11px;color:var(--em);background:var(--eml);border:none;border-radius:var(--rpill);padding:4px 10px;cursor:pointer;white-space:nowrap;font-family:inherit;font-weight:500;-webkit-tap-highlight-color:transparent}
+.ab:active{opacity:0.7}
+
+/* ALT PANEL */
+.ap{background:var(--eml);border-top:0.5px solid var(--border);padding:11px 15px 14px;display:none}
+.ap.on{display:block}
+.albl{font-size:10px;color:var(--emd);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.4px}
+.an{font-size:14px;font-weight:500;color:var(--emt);margin-bottom:3px}
+.ad{font-size:12px;color:var(--emd);line-height:1.5}
+
+/* DAY META BAR */
+.dmr{padding:12px 15px;display:flex;background:var(--card);border-bottom:0.5px solid var(--border)}
+.dmi{flex:1;text-align:center;border-right:0.5px solid var(--border)}
+.dmi:last-child{border-right:none}
+.dmv{font-size:14px;font-weight:600;color:var(--em)}
+.dml{font-size:11px;color:var(--text2);margin-top:2px}
+
+/* MODAL OVERLAY — in-flow faux viewport */
+.mwrap{display:none;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;padding:20px 16px;min-height:500px}
+.mwrap.on{display:flex}
+.mbox{background:var(--card);border-radius:22px;width:100%;max-width:440px;max-height:82vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.mhdr{padding:16px 16px 13px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--card);z-index:2;border-radius:22px 22px 0 0}
+.mt{font-size:17px;font-weight:600;color:var(--text);flex:1;letter-spacing:-0.2px}
+.ms{font-size:12px;color:var(--text2);margin-top:3px}
+.xbtn{border:none;background:var(--surf);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:var(--text2);-webkit-tap-highlight-color:transparent}
+.mbdy{padding:15px 16px 24px}
+
+/* MODAL CONTENT */
+.cbox{background:var(--eml);border-radius:var(--rsm);padding:12px 13px;font-size:13px;color:var(--emt);line-height:1.65;margin-bottom:12px}
+.wbox{background:var(--wrl);border-radius:var(--rsm);padding:12px 13px;font-size:13px;color:var(--wr);line-height:1.65;margin-bottom:12px}
+.vbtn{display:flex;align-items:center;gap:9px;background:var(--em);border:none;border-radius:var(--rsm);padding:11px 15px;font-size:14px;color:#fff;cursor:pointer;font-family:inherit;margin-bottom:14px;width:100%;font-weight:500;-webkit-tap-highlight-color:transparent}
+.vbtn i{font-size:18px}
+.vbtn:active{opacity:0.85}
+.divl{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;padding:13px 0 8px;border-top:0.5px solid var(--border);margin-top:6px}
+.fr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.fg{margin-bottom:12px}
+.fl{font-size:13px;color:var(--text2);margin-bottom:6px;display:block}
+input[type=number],input[type=text],textarea,select{width:100%;padding:11px 13px;border:0.5px solid var(--border2);border-radius:var(--rsm);background:var(--surf);color:var(--text);font-size:15px;font-family:inherit;-webkit-appearance:none;appearance:none}
+input:focus,textarea:focus{outline:none;border-color:var(--em);box-shadow:0 0 0 3px rgba(15,110,86,0.15)}
+textarea{height:68px;resize:none;line-height:1.5}
+.rpeg{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-top:5px}
+.rb{padding:9px 4px;border-radius:9px;font-size:14px;border:0.5px solid var(--border2);background:var(--surf);color:var(--text2);cursor:pointer;text-align:center;font-family:inherit;-webkit-tap-highlight-color:transparent;transition:background 0.15s}
+.rb.on{background:var(--em);color:#fff;border-color:var(--em)}
+.ar{display:flex;gap:10px;margin-top:14px}
+.btn{border-radius:var(--rsm);padding:13px 16px;font-size:15px;font-weight:500;border:none;cursor:pointer;font-family:inherit;flex:1;text-align:center;-webkit-tap-highlight-color:transparent}
+.bpri{background:var(--em);color:#fff}
+.bpri:active{opacity:0.85}
+.bout{background:var(--surf);color:var(--text);border:0.5px solid var(--border2)}
+.bout:active{opacity:0.7}
+.bdng{background:var(--wrl);color:var(--wr)}
+.bdng:active{opacity:0.7}
+.pe{font-size:13px;color:var(--text2);padding:8px 0;border-bottom:0.5px solid var(--border);line-height:1.5}
+.pe:last-child{border-bottom:none}
+
+/* LOG SCREEN */
+.le{padding:13px 15px;border-bottom:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start}
+.le:last-child{border-bottom:none}
+.ln{font-size:14px;font-weight:500;color:var(--text)}
+.ld{font-size:12px;color:var(--text2);margin-top:3px;line-height:1.4}
+.ldt{font-size:11px;color:var(--text3);white-space:nowrap;margin-top:2px}
+
+/* BENCHMARK SCREEN */
+.bf{padding:13px 15px;border-bottom:0.5px solid var(--border)}
+.bf:last-child{border-bottom:none}
+.bl{font-size:13px;color:var(--text2);margin-bottom:8px;line-height:1.4}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:64px 24px;color:var(--text2)}
+.empty i{font-size:48px;display:block;margin-bottom:16px;color:var(--text3)}
+.empty p{font-size:15px;line-height:1.7}
+
+/* EXPORT SUCCESS */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--em);color:#fff;padding:12px 20px;border-radius:var(--rpill);font-size:14px;font-weight:500;display:none;z-index:999;white-space:nowrap}
+.toast.show{display:block}
+</style>
+</head>
+<body>
+<h1 class="sr-only">Motion Blueprint — Karan Block 1 Training App</h1>
+<div class="app">
+  <div id="navArea"></div>
+  <div class="tabs" id="tabBar">
+    <button class="tab on" id="t0" onclick="go(0)"><i class="ti ti-home" aria-hidden="true"></i>Home</button>
+    <button class="tab" id="t1" onclick="go(1)"><i class="ti ti-clipboard-list" aria-hidden="true"></i>My log</button>
+    <button class="tab" id="t2" onclick="go(2)"><i class="ti ti-chart-bar" aria-hidden="true"></i>Benchmarks</button>
+    <button class="tab" id="t3" onclick="doExport()"><i class="ti ti-download" aria-hidden="true"></i>Export</button>
+  </div>
+  <div id="pg0" class="pg on"></div>
+  <div id="pg1" class="pg"></div>
+  <div id="pg2" class="pg"></div>
+</div>
+
+<div class="mwrap" id="mwrap" onclick="handleOvClick(event)">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<div class="toast" id="toast">CSV downloaded!</div>
+
+<script>
+var W=['Week 1','Week 2','Week 3','Week 4 (Deload)'];
+var cw=0,cd=null,sr=null;
+var logs=[],bmks={};
+try{logs=JSON.parse(localStorage.getItem('mb_logs')||'[]');}catch(e){logs=[];}
+try{bmks=JSON.parse(localStorage.getItem('mb_bmks')||'{}');}catch(e){bmks={};}
+
+var YT={
+  'Hooklying Breathing':'https://www.youtube.com/shorts/dXVwQSRQrJc',
+  '90/90 Hip Switch':'https://www.youtube.com/watch?v=zMcDg5Nx7Qc',
+  'Quadruped T-Spine Rotation':'https://www.youtube.com/watch?v=i_3SjMHFWK4',
+  'Spiderman Lunge + Rotation':'https://www.youtube.com/watch?v=GcNXpWdz5BU',
+  'Leaning Wall Single-Leg Calf Raise':'https://www.youtube.com/watch?v=gwLzBJYoWlI',
+  'Bench Reverse Plank Hip Flexor Raise':'https://www.youtube.com/watch?v=zS3gcIW-oNs',
+  '1DB Seated External Rotation':'https://www.youtube.com/watch?v=oGPl7M3ydyw',
+  'Tall Plank Alternating Shoulder Taps':'https://www.youtube.com/watch?v=LEZq7QHMezc',
+  'Side-Lying Hip Adduction':'https://www.youtube.com/watch?v=RFqgN1MXUOI',
+  'Side Plank with Twist':'https://www.youtube.com/watch?v=_6vlo4FKMRY',
+  'Seated Wall Slide':'https://www.youtube.com/watch?v=1_OLIfxMsTQ',
+  'Suitcase Carry':'https://www.youtube.com/watch?v=uBT5UVPqY8M',
+  'Squat Jump':'https://www.youtube.com/watch?v=Azl5tkCzDcc',
+  'DB Step-Up + Knee Drive':'https://www.youtube.com/watch?v=WCFCdxzFBa4',
+  'Plyo Push-Up':'https://www.youtube.com/watch?v=F7nTimlbxbo',
+  'Medicine Ball Floor Slam':'https://www.youtube.com/watch?v=FMHNEqfkeKE',
+  'KB Two-Hand Swing':'https://www.youtube.com/watch?v=sSESeQAir2M',
+  'Single-Arm DB Push Press':'https://www.youtube.com/watch?v=IXzEEkMKyZ0',
+  'Goblet Squat':'https://www.youtube.com/watch?v=MeIiIdhvXT4',
+  'DB Bent-Over Reverse Fly':'https://www.youtube.com/watch?v=Gt8fgVsdsYs',
+  'Goblet Reverse Lunge':'https://www.youtube.com/watch?v=l2aBBbfT1zY',
+  'DB Incline Bench Press':'https://www.youtube.com/watch?v=8iPEnn-ltC8',
+  'Stability Ball Hamstring Curl':'https://www.youtube.com/watch?v=2Gn_V5GRpG0',
+  'Tuck-Up':'https://www.youtube.com/watch?v=wD2nJMsJMOY',
+  'DB Bench Press':'https://www.youtube.com/watch?v=VmB1G1K7v94',
+  'Half-Kneeling Single-Arm Press':'https://www.youtube.com/watch?v=b9PJKZG5xnk',
+  'DB 3-Point Row':'https://www.youtube.com/watch?v=2-J34DPSTD0',
+  'DB Lateral Raise':'https://www.youtube.com/watch?v=3VcKaXpzqRo',
+  'DB Seated Biceps Curl':'https://www.youtube.com/watch?v=ykJmrZ5v0Oo',
+  'KB/Barbell Deadlift':'https://www.youtube.com/watch?v=op9kVnSso6Q',
+  'Single-Leg Calf Raise (elevated)':'https://www.youtube.com/watch?v=gwLzBJYoWlI',
+  'Rear Foot Elevated Split Squat':'https://www.youtube.com/watch?v=2C-uNgKwPLE',
+  'BB Hip Thrust':'https://www.youtube.com/watch?v=SEdqd1n0cvg',
+  'Goblet Lateral Lunge':'https://www.youtube.com/watch?v=qPDbbGLRHE8',
+  'Cable Anti-Rotation Press':'https://www.youtube.com/watch?v=2KimPCBMNkM',
+  'Pull-Up / Lat Pulldown':'https://www.youtube.com/watch?v=eGo4IYlbE5g',
+  'Seated Cable Row':'https://www.youtube.com/watch?v=GZbfZ033f74',
+  'Push-Up / Fist Push-Up':'https://www.youtube.com/watch?v=IODxDxX7oi4',
+  'DB Front Raise':'https://www.youtube.com/watch?v=hRJ6tR5-if0',
+  'Cable Overhead Triceps Extension':'https://www.youtube.com/watch?v=vB5OHsJ3EME',
+  'Farmer Carry':'https://www.youtube.com/watch?v=Fkzk_RqlYig',
+  'Tall Plank KB Drag':'https://www.youtube.com/watch?v=pSHjTRCQxIw',
+  'Box Breathing (4-4-4-4)':'https://www.youtube.com/watch?v=tEmt1Znux58',
+  'KB Chain':'https://www.youtube.com/watch?v=KP1g9GiELv4'
+};
+
+var DAYS=[
+{id:'d1',lbl:'Monday',ic:'🏋️',ti:'Lower body',su:'Squat · Glute · Ankle',dur:'65–75 min',rpe:'6–7',inj:'Left ankle · VMO · Glute',
+ secs:[
+  {lbl:'Warm-up',tp:'wu',items:[
+   {n:'Hooklying Breathing',d:'1 set · 6 slow breaths',c:'Expand belly 360 degrees on inhale. Exhale 4 sec, gentle compression. No chest rising.',alt:{n:'Crocodile Breathing',d:'Prone position · 6 breaths',c:'Face down, hands under forehead. Breathe into back and sides. Good if lying on back is uncomfortable.'}},
+   {n:'90/90 Hip Switch',d:'1 set · 8 reps/side',c:'Rotate hips to switch legs without hands. Tall chest. Move slow on left side.',alt:{n:'Supine Hip Rock',d:'1 set · 8 reps/side',c:'Lie on back, knees bent, rock both knees side to side. Gentler hip mobility for tight mornings.'}},
+   {n:'Quadruped T-Spine Rotation',d:'1 set · 8 reps/side',c:'From quadruped sit to heels. Hand behind head, rotate elbow to ceiling. Keep lower back still.',alt:{n:'Seated Thoracic Rotation',d:'1 set · 8 reps/side',c:'Sit cross-legged, hands on shoulders, rotate slowly. Use if wrists are stiff in quadruped.'}},
+   {n:'Spiderman Lunge + Rotation',d:'1 set · 4 reps/side',c:'Deep lunge, plant hand same side, rotate top arm to ceiling. Hips stay low.',alt:{n:'World Greatest Stretch',d:'1 set · 4 reps/side',c:'Same pattern but 3-sec hold at each end range position.'}},
+   {n:'Leaning Wall Single-Leg Calf Raise',d:'2 sets · 8-10 reps/side',c:'3 sec up, 3 sec down. Full range. Log left vs right reps separately.',w:'LEFT ANKLE — full range, controlled. Log both sides every session.',alt:{n:'Seated Calf Raise',d:'2 sets · 12 reps/side',c:'Plate on knee. Full range. Seated option if wall version is too challenging or painful.'}},
+   {n:'Bench Reverse Plank Hip Flexor Raise',d:'2 sets · 6 reps/side, 3 sec hold',c:'Hips lifted off bench edge, raise one knee to 90 degrees, hold. Keep hips level.'}
+  ]},
+  {lbl:'Power',tp:'pw',items:[
+   {n:'Squat Jump',d:'3 sets · 5 reps · Rest 45 sec',c:'Land softly — absorb through hips first. 1-sec pause at bottom before next rep.',w:'LEFT ANKLE: Land soft. Switch to Step-Up alt if ankle feels unstable.',alt:{n:'DB Step-Up + Knee Drive',d:'3 sets · 5 reps/side · Rest 45 sec',c:'12-16 inch box. Drive top knee to hip height at top. Ankle-safe power option.'}}
+  ]},
+  {lbl:'Strength supersets',tp:'st',items:[
+   {n:'Goblet Squat',d:'3 sets · 8 reps · RPE 6-7',c:'Feet shoulder-width, toes 10-15 degrees out. Elbows inside knees at bottom. Chest tall. Drive floor away.',w:'LEFT ANKLE: heel must stay planted — no rising.',alt:{n:'Box Squat (goblet)',d:'3 sets · 8 reps · RPE 6-7',c:'Sit to a box at parallel. Removes ankle dorsiflexion demand completely.'}},
+   {n:'DB Bent-Over Reverse Fly',d:'3 sets · 10 reps · RPE 7-8',c:'Hinge 45 degrees. Lead with elbows wide. Pause 1 sec at top. Counters pressing and addresses chest imbalance.',alt:{n:'Cable Rear Delt Crossover',d:'3 sets · 10 reps · RPE 7-8',c:'Cable machine option. Same rear delt focus with constant tension.'}},
+   {n:'Goblet Reverse Lunge',d:'3 sets · 8 reps/side · RPE 7-8',c:'Step BACK not forward. Front heel stays planted. Glute drives the return.',w:'LEFT ANKLE as front foot — controlled dorsiflexion loading.',alt:{n:'Split Squat (static)',d:'3 sets · 8 reps/side · RPE 7-8',c:'Both feet stay planted. Removes the step if ankle is too unstable for lunge.'}},
+   {n:'DB Incline Bench Press',d:'3 sets · 8 reps · RPE 7-8',c:'Neutral grip (palms facing). Right side may press less — do not force symmetry.',w:'RIGHT WRIST: neutral grip only. No barbell this block.',alt:{n:'Cable Chest Press (seated)',d:'3 sets · 8 reps · RPE 7-8',c:'Most wrist-neutral pressing option. D-handles or rope.'}},
+   {n:'Stability Ball Hamstring Curl',d:'3 sets · 10-12 reps · RPE 7-8',c:'Hips UP first, then curl heels in. Lower 3 sec.',w:'LEFT ANKLE: if ball irritates Achilles switch to Hip Bridge alt.',alt:{n:'Single-Leg Hip Bridge',d:'3 sets · 12 reps/side',c:'Floor option. Drive one heel down, lift hips. Great glute and hamstring combo.'}},
+   {n:'Tuck-Up',d:'3 sets · 8-10 reps · RPE 7-8',c:'From hollow body, bring knees to chest simultaneously. Control the return.',alt:{n:'Dead Bug',d:'3 sets · 8 reps/side',c:'Press low back into floor. Lower opposite arm and leg slowly. Safer for low back.'}}
+  ]},
+  {lbl:'Finisher',tp:'fi',items:[
+   {n:'Farmer Carry',d:'4 rounds · 30 sec',c:'Braced core, eyes forward. Builds toward lifting-your-wife goal.',alt:{n:'Lateral Band Walk',d:'4 rounds · 12 steps each direction',c:'Ankle-safe lateral loading. Band above knees.'}},
+   {n:'Tall Plank KB Drag',d:'4 rounds · 30 sec',c:'Drag KB side to side. Hips perfectly still — anti-rotation core.'}
+  ]},
+  {lbl:'Cooldown',tp:'cd',items:[
+   {n:'Low Lunge (L hip focus)',d:'60 sec/side, extra 30 sec left'},{n:'Half Splits',d:'60 sec/side'},{n:'Reclining Figure-Four',d:'60 sec/side'},{n:'Lying Spinal Twist',d:'45 sec/side'},{n:'Happy Baby',d:'45 sec'}
+  ]}
+ ]
+},
+{id:'d2',lbl:'Tuesday',ic:'💪',ti:'Upper body',su:'Push · Pull · Wrist/Shoulder',dur:'60–70 min',rpe:'6–7',inj:'Right wrist · Right shoulder',
+ secs:[
+  {lbl:'Warm-up',tp:'wu',items:[
+   {n:'Hooklying Breathing',d:'1 set · 6 breaths',c:'Focus on releasing neck and shoulder tension on exhale. Consciously drop the shoulders.'},
+   {n:'90/90 Hip Switch',d:'1 set · 8 reps/side',c:'Notice if left hip range improved from Monday. That is adaptation beginning.'},
+   {n:'Quadruped T-Spine Rotation',d:'1 set · 8 reps/side',c:'Emphasize RIGHT side today — the stiffer shoulder. Slow, pause at end range.',w:'RIGHT SHOULDER emphasis today.',alt:{n:'Open Book Stretch (side-lying)',d:'8 reps/side',c:'Lie on side, stack knees, rotate top arm open. Gentler thoracic option.'}},
+   {n:'Spiderman Lunge + Rotation',d:'1 set · 4 reps/side',c:'Add overhead reach at top. Fingers to ceiling, look up. Opens thoracic chain before pressing.'},
+   {n:'1DB Seated External Rotation',d:'2 sets · 12 reps/side',c:'Elbow at 90 degrees pinned to side. 3-5 lb DB. Rotate forearm out slowly. Direct rotator cuff prehab.',w:'RIGHT WRIST + SHOULDER: primary prehab movement.',alt:{n:'Band External Rotation',d:'2 sets · 12 reps/side',c:'Band anchored at elbow height. Same pattern. Easier on the wrist.'}},
+   {n:'Tall Plank Alternating Shoulder Taps',d:'2 sets · 8 reps/side',c:'Hands under shoulders. Tap opposite shoulder, replace before tapping other. Hips perfectly still.'}
+  ]},
+  {lbl:'Power',tp:'pw',items:[
+   {n:'Plyo Push-Up',d:'3 sets · 5 reps · Rest 45-60 sec',c:'Full push-up down, explosive up, hands leave floor. Land soft.',w:'RIGHT WRIST: perform on fists if flat palm causes pain.',alt:{n:'Medicine Ball Floor Slam',d:'3 sets · 8 reps · Rest 45 sec',c:'Overhead slam, absorb at hips. Use if wrist cannot tolerate push-up at all.'}}
+  ]},
+  {lbl:'Strength supersets',tp:'st',items:[
+   {n:'DB Bench Press',d:'4 sets · 8 reps · RPE 6-7',c:'Neutral or hammer grip. Right side may press less. Do not overload right to match left.',w:'RIGHT WRIST: neutral grip only — no barbell this block.',alt:{n:'Cable Chest Press (seated)',d:'4 sets · 8 reps · RPE 6-7',c:'Most wrist-neutral option. D-handles or rope attachment.'}},
+   {n:'DB Bent-Over Reverse Fly',d:'3 sets · 10 reps · RPE 7-8',c:'Equal reps both sides. Left may feel stronger — goal is to equalize over the block.',alt:{n:'Face Pull (cable or band)',d:'3 sets · 12 reps · RPE 7-8',c:'Rope at face height, pull to ears. Great rear delt and rotator cuff combo.'}},
+   {n:'Half-Kneeling Single-Arm Press',d:'3 sets · 8 reps/side · RPE 7',c:'Log weight used per side. Right arm may shake overhead — lighter is correct.',w:'RIGHT SHOULDER: use lighter weight than left side.',alt:{n:'Landmine Press',d:'3 sets · 8 reps/side · RPE 7',c:'More shoulder-friendly arc than vertical press. Good if overhead is irritating.'}},
+   {n:'DB 3-Point Row',d:'3 sets · 10 reps/side · RPE 7',c:'Elbow drives back, not just hand. Squeeze scapula at end range.',w:'RIGHT WRIST: hook grip acceptable if standard grip fatigues.',alt:{n:'Seated Cable Row',d:'3 sets · 10 reps · RPE 7',c:'D-handle keeps wrist neutral. Bilateral option.'}},
+   {n:'DB Lateral Raise',d:'3 sets · 12 reps · RPE 8-9',c:'Lead with elbows. Stop at shoulder height. Both sides same weight.',alt:{n:'Cable Lateral Raise',d:'3 sets · 12 reps · RPE 8-9',c:'Single-arm cable. Constant tension throughout range. Easier on joints.'}},
+   {n:'DB Seated Biceps Curl',d:'3 sets · 12 reps · RPE 8-9',c:'Supinated grip is fine. Switch to hammer grip if wrist discomfort occurs.',w:'RIGHT WRIST: switch to hammer grip if needed.',alt:{n:'Cable Curl (rope or EZ bar)',d:'3 sets · 12 reps · RPE 8-9',c:'EZ-bar reduces wrist supination stress. Constant tension option.'}}
+  ]},
+  {lbl:'Finisher',tp:'fi',items:[
+   {n:'30/20/10 Cardio Intervals',d:'3-4 rounds · rower, ski erg, or bike',c:'30 sec RPE 6 to 20 sec RPE 8 to 10 sec all-out. 30-60 sec rest between rounds.',alt:{n:'Cable Woodchop',d:'3 rounds · 10 reps/side',c:'Low to high, hip-driven rotation. Golf swing and volleyball serve power.'}}
+  ]},
+  {lbl:'Cooldown',tp:'cd',items:[
+   {n:'Puppy Pose',d:'60 sec'},{n:'Thread the Needle',d:'45 sec/side'},{n:'Child Pose',d:'60 sec'},{n:'Cat-Cow',d:'8 slow cycles'},{n:'Seated Forward Fold',d:'45 sec'}
+  ]}
+ ]
+},
+{id:'d3',lbl:'Wednesday',ic:'🧘',ti:'Active recovery',su:'Swim · Stretch · Breathwork',dur:'30–45 min',rpe:'4–5',inj:'All 3 sites — light passive',
+ secs:[
+  {lbl:'Option A — Swim',tp:'wu',items:[
+   {n:'Easy Freestyle or Kickboard',d:'5 min easy',c:'No flip turns. Left ankle gets full range in buoyancy — therapeutic.'},
+   {n:'Alternating Lap + Backstroke',d:'10 min moderate',c:'Backstroke opens the anterior shoulder chain — great for right shoulder.'},
+   {n:'Water Walking or Flutter Kick',d:'5 min',c:'Ankle mobility in low-gravity environment.'}
+  ]},
+  {lbl:'Option B — Walk and stretch',tp:'wu',items:[
+   {n:'Leisurely Walk',d:'20 min with wife',c:'Easy pace. Recovery not cardio.'},
+   {n:'Full Stretch Sequence',d:'15-20 min',c:'Child Pose, Cat-Cow, Down Dog, Low Lunge, Half Splits, Cobra, Puppy, Thread the Needle, Forward Fold, Butterfly, Pigeon, Spinal Twist, Happy Baby.'}
+  ]},
+  {lbl:'Breathwork',tp:'cd',items:[
+   {n:'Box Breathing (4-4-4-4)',d:'5 min · 5-8 rounds',c:'Inhale 4, Hold 4, Exhale 4, Hold empty 4. Do before bed for sleep quality.',alt:{n:'4-7-8 Breathing',d:'5 min · 5 rounds',c:'Inhale 4, Hold 7, Exhale 8. Stronger parasympathetic activation for stress relief.'}}
+  ]}
+ ]
+},
+{id:'d4',lbl:'Thursday',ic:'🔥',ti:'Lower body',su:'Hinge · Hip Dominant',dur:'65–75 min',rpe:'7–8',inj:'Left ankle · Glute/hamstring · Knee',
+ secs:[
+  {lbl:'Warm-up',tp:'wu',items:[
+   {n:'Hooklying Breathing',d:'1 set · 6 breaths, 5 sec exhale',c:'By Day 4 this should feel familiar. Extended exhale activates parasympathetic — calms pre-lift nerves.'},
+   {n:'90/90 Hip Switch',d:'1 set · 8 reps/side',c:'Sit longer in internal rotation today. Targets hip internal rotators from left femur history.'},
+   {n:'Quadruped T-Spine Rotation',d:'1 set · 8 reps/side',c:'Add slight lat stretch at heel-sit before rotating. Feel entire posterior chain lengthen.'},
+   {n:'Spiderman Lunge + Rotation',d:'1 set · 4 reps/side, 3 sec hold',c:'Slow today — 3 sec at bottom. Feel hip flexor load and thoracic rotation working together.',alt:{n:'Deep Squat Hold',d:'60 sec total',c:'Hands on knees or feet. Hip flexor and ankle mobility in one movement.'}},
+   {n:'Side-Lying Hip Adduction',d:'2 sets · 12-15 reps/side',c:'Bottom leg straight. Raise 12-18 inches, pause 1 sec, lower slowly. Keep pelvis stacked — no rolling back.',w:'LEFT FEMUR/PELVIS: direct adductor and pelvic stability work.',alt:{n:'Clamshell (banded)',d:'2 sets · 15 reps/side',c:'Band above knees. Hip external rotation. Good abductor and adductor balance pair.'}},
+   {n:'Side Plank with Twist',d:'2 sets · 8-10 reps/side',c:'Forearm side plank. Reach top arm under body and rotate back to ceiling. Anti-lateral flexion and rotation.'}
+  ]},
+  {lbl:'Power',tp:'pw',items:[
+   {n:'KB Two-Hand Swing',d:'3 sets · 8 reps · Rest 45-60 sec',c:'Hip hinge NOT a squat. Hike KB back, snap hips explosively, arms float to shoulder height.',w:'LEFT ANKLE: both feet planted — ankle-safe power movement.',alt:{n:'Broad Jump',d:'3 sets · 5 reps · Rest 45 sec',c:'Horizontal jump. Land both feet simultaneously, absorb at hips. Only if ankle stable.',w:'Only if ankle fully stable from Week 1 assessment.'}}
+  ]},
+  {lbl:'Strength supersets',tp:'st',items:[
+   {n:'KB/Barbell Deadlift',d:'4 sets · 5 reps · RPE 7',c:'Hinge at hips FIRST then bend knees. Bar against shins. Squeeze glutes at lockout.',w:'RIGHT WRIST: mixed grip or straps if wrist strain occurs.',alt:{n:'Trap Bar Deadlift',d:'4 sets · 5 reps · RPE 7',c:'Neutral handles. More forgiving on wrist and lower back. Excellent option.'}},
+   {n:'Single-Leg Calf Raise (elevated)',d:'3 sets · 10-12 reps/side · RPE 8-9',c:'Full range — full drop into dorsiflexion, full rise. Log left vs right every single session.',w:'LEFT ANKLE: PRIMARY strength marker. Log both sides every session.',alt:{n:'Seated Calf Raise',d:'3 sets · 12-15 reps/side',c:'Less balance demand. Still full range. Plate on knee for load.'}},
+   {n:'Rear Foot Elevated Split Squat',d:'3 sets · 8 reps/side · RPE 7-8',c:'Front heel stays planted. Drive through heel not toes. Glute of front leg does the work.',w:'LEFT ANKLE as front foot: controlled progressive loading.',alt:{n:'Split Squat (feet floor)',d:'3 sets · 8 reps/side · RPE 7-8',c:'Both feet on floor. Removes balance demand of rear foot elevated version.'}},
+   {n:'BB Hip Thrust',d:'3 sets · 10 reps · RPE 8',c:'Upper back on bench, bar across hips. Drive hips to ceiling, squeeze glutes 1 sec at top.',w:'Glute priority — undertrained from pelvis history.',alt:{n:'Cable Pull-Through',d:'3 sets · 12 reps · RPE 7-8',c:'Cable between legs, hinge forward, squeeze glutes at top. Very glute-friendly.'}},
+   {n:'Goblet Lateral Lunge',d:'3 sets · 8 reps/side · RPE 7-8',c:'Step wide, sit hips back AND down into stepping leg. Standing leg stays straight.',w:'LEFT ANKLE: lateral loading — start lighter.',alt:{n:'Lateral Band Walk',d:'3 sets · 15 steps/side',c:'Band above knees. Safer lateral ankle loading if lunge is too demanding.'}},
+   {n:'Cable Anti-Rotation Press',d:'3 sets · 10 reps/side · RPE 7-8',c:'Stand sideways to cable. Press straight forward, hold 2 sec, return. Core fights rotation entire time.',alt:{n:'Pallof Press (band)',d:'3 sets · 10 reps/side',c:'Band looped around squat rack. Same anti-rotation pattern without cable machine.'}}
+  ]},
+  {lbl:'Finisher',tp:'fi',items:[
+   {n:'KB Chain',d:'3 sets · 3 reps/side · Rest 60 sec',c:'Clean, Press, Lunge, Squat, Swing — that chain is 1 rep per side. Left arm first.',w:'RIGHT WRIST: left arm first. Skip press if wrist fatigues — go straight to lunge.',alt:{n:'Farmer Carry (increasing weight)',d:'4 rounds · 30 sec',c:'Progress weight each round. Builds directly toward lifting-your-wife goal.'}}
+  ]},
+  {lbl:'Cooldown',tp:'cd',items:[
+   {n:'Low Lunge with hip flexor reach',d:'60 sec/side, extra left'},{n:'Downward-Facing Dog',d:'60 sec'},{n:'Cobra Pose',d:'45 sec'},{n:'Seated Butterfly',d:'60 sec'},{n:'Lying Spinal Twist',d:'45 sec/side'}
+  ]}
+ ]
+},
+{id:'d5',lbl:'Friday',ic:'🎯',ti:'Upper body',su:'Pull · Press · Grip and Wrist',dur:'60–70 min',rpe:'7–8',inj:'Right wrist/grip · Shoulder stability',
+ secs:[
+  {lbl:'Warm-up',tp:'wu',items:[
+   {n:'Hooklying Breathing',d:'1 set · 6 breaths, 5 sec exhale',c:'End of training week. Nervous system reset matters most today. Take your time.'},
+   {n:'90/90 Hip Switch',d:'1 set · 8 reps/side',c:'Notice bilateral symmetry. Does left hip move more freely than Monday? That is adaptation.'},
+   {n:'Quadruped T-Spine Rotation',d:'1 set · 8 reps/side',c:'Right shoulder should feel less stiff by Friday. If not, add 4 extra reps on right.'},
+   {n:'Spiderman Lunge + Rotation',d:'1 set · 4 reps/side',c:'Add shoulder circles at top — 3 forward, 3 back. Shoulder prep for pulling emphasis today.'},
+   {n:'Seated Wall Slide',d:'2 sets · 12-15 reps',c:'Sit against wall, elbows 90 degrees, forearms against wall. Slide arms overhead keeping contact.',w:'RIGHT SHOULDER + WRIST: losing wall contact is exactly what you are correcting.',alt:{n:'Doorway Chest Stretch',d:'2 sets · 30 sec/side',c:'Forearm on doorframe at 90 degrees. Gentle pec and anterior shoulder opening.'}},
+   {n:'Suitcase Carry',d:'2 sets · 25-30 sec/side',c:'Start RIGHT side first when grip is freshest. No trunk lean at all. Log right vs left duration.',w:'RIGHT WRIST: grip strengthening — log the asymmetry every session.'}
+  ]},
+  {lbl:'Power',tp:'pw',items:[
+   {n:'Single-Arm DB Push Press',d:'3 sets · 5 reps/side · RPE 5-6',c:'Light and fast. Dip, drive with legs, press overhead. Right side: 50-70 percent of left weight.',w:'RIGHT WRIST: very light — RPE 5-6 only.',alt:{n:'Medicine Ball Floor Slam',d:'3 sets · 8 reps',c:'If right wrist cannot handle overhead pressing yet. Hip extension power.'}}
+  ]},
+  {lbl:'Strength supersets',tp:'st',items:[
+   {n:'Pull-Up / Lat Pulldown',d:'4 sets · AMRAP or 10 reps · RPE 8',c:'Log reps per set — this is a core benchmark movement for the block.',w:'RIGHT WRIST: assess dead hang grip before set 1. Move to pulldown if painful.',alt:{n:'Assisted Pull-Up (band)',d:'4 sets · AMRAP',c:'Use band thickness for 8-10 reps. Builds toward unassisted pull-up.'}},
+   {n:'DB Incline Bench Press',d:'4 sets · 8 reps · RPE 7-8',c:'Neutral grip only Week 1. Let right side find comfortable angle — do not force symmetry.',w:'RIGHT WRIST: neutral grip. Do not mirror left side angle.',alt:{n:'Cable Chest Press (seated)',d:'4 sets · 8 reps · RPE 7-8',c:'Most wrist-neutral pressing option for this day.'}},
+   {n:'Seated Cable Row',d:'3 sets · 12 reps · RPE 8-9',c:'Drive elbows BACK. Hold 1 sec at full retraction. Squeeze scapula together.',w:'RIGHT WRIST: D-handle (neutral wrist) preferred.',alt:{n:'DB Bent-Over Row',d:'3 sets · 10 reps/side · RPE 8',c:'Brace on bench. Same pulling pattern without cable setup.'}},
+   {n:'Push-Up / Fist Push-Up',d:'3 sets · 8 reps · RPE 7-8',c:'Body plank from head to heel. No hips sagging.',w:'RIGHT WRIST: switch to fist push-up if flat palm causes pain.',alt:{n:'Elevated Push-Up (hands on bench)',d:'3 sets · 10 reps',c:'Reduces load and wrist angle. Good progression entry point.'}},
+   {n:'DB Front Raise',d:'3 sets · 12 reps · RPE 8-9',c:'Raise to shoulder height only. Controlled 3-sec lower.',w:'RIGHT WRIST: switch to hammer grip if pronated aggravates.',alt:{n:'Cable Front Raise (alternating)',d:'3 sets · 12 reps/side · RPE 8-9',c:'Constant tension through range. Wrist stays neutral with rope attachment.'}},
+   {n:'Cable Overhead Triceps Extension',d:'3 sets · 12 reps · RPE 8-9',c:'Rope attachment most wrist-neutral. Control the eccentric. Right tricep may feel weaker.',w:'RIGHT WRIST: rope attachment preferred.',alt:{n:'DB Triceps Kickback',d:'3 sets · 12 reps/side',c:'Hinge forward, elbow pinned at side, extend arm straight back. Neutral wrist position.'}}
+  ]},
+  {lbl:'Finisher',tp:'fi',items:[
+   {n:'Thruster + Front Plank Circuit',d:'4 rounds · 20/20/20 sec',c:'Squat to overhead press 20 sec, Front plank 20 sec, Rest 20 sec.',alt:{n:'Farmer Carry + Lateral Band Walk',d:'4 rounds · 30 + 30 sec',c:'Wrist-friendly finisher option. Builds carry strength toward your goal.'}}
+  ]},
+  {lbl:'Cooldown',tp:'cd',items:[
+   {n:'Puppy Pose',d:'60 sec'},{n:'Thread the Needle',d:'45 sec/side'},{n:'Cobra then Down Dog flow',d:'5 slow cycles'},{n:'Seated Forward Fold',d:'60 sec'},{n:'Happy Baby',d:'45 sec'}
+  ]}
+ ]
+},
+{id:'d6',lbl:'Saturday',ic:'🏐',ti:'Sport day',su:'Volleyball · Golf · Pickleball',dur:'60–120 min',rpe:'varies',inj:'Left ankle load management',
+ secs:[
+  {lbl:'Sport warm-up',tp:'wu',items:[
+   {n:'Full Body Warm-Up',d:'10 min from any weekday sequence',c:'Always warm up before volleyball. Left ankle especially needs preparation.'}
+  ]},
+  {lbl:'Sport activity log',tp:'st',items:[
+   {n:'Volleyball',d:'Log duration and court feel',c:'How did ankle feel on jumps? Any difference vs before the block?'},
+   {n:'Golf (driving range)',d:'Log balls hit and rotation feel',c:'Any difference in hip rotation comfort vs before the block?'},
+   {n:'Pickleball',d:'Log duration'},{n:'Swimming',d:'Log distance and duration'}
+  ]}
+ ]
+}
+];
+
+var BENCH=[
+ {cat:'Left ankle',em:'🦶',fields:[{k:'bal_l',l:'Single-leg balance (L) — sec'},{k:'calf_l',l:'Calf raise max reps (L)'},{k:'band_d',l:'Band walk difficulty (Easy/Mod/Hard)'},{k:'band_p',l:'Band walk discomfort (0-10)'}]},
+ {cat:'Right wrist',em:'🤜',fields:[{k:'hang',l:'Dead hang — sec'},{k:'fist',l:'Fist push-up hold — sec'},{k:'cw',l:'Farmer carry weight R side (lbs)'},{k:'cpd',l:'Farmer carry discomfort (0-10)'}]},
+ {cat:'Glute and pelvis',em:'🦵',fields:[{k:'gb_l',l:'Single-leg glute bridge reps (L)'},{k:'gb_r',l:'Single-leg glute bridge reps (R)'},{k:'sq_l',l:'Single-leg squat to box (L)'},{k:'sq_r',l:'Single-leg squat to box (R)'},{k:'cop_l',l:'Copenhagen plank L (sec)'},{k:'cop_r',l:'Copenhagen plank R (sec)'}]},
+ {cat:'General fitness',em:'💪',fields:[{k:'pu',l:'Max push-ups (unbroken)'},{k:'row',l:'500m row time (M:SS)'},{k:'gs',l:'Goblet squat 8 clean reps (lbs)'},{k:'rdl',l:'DB RDL 8 reps/side (lbs)'}]}
+];
+
+function sav(){try{localStorage.setItem('mb_logs',JSON.stringify(logs));localStorage.setItem('mb_bmks',JSON.stringify(bmks));}catch(e){}}
+function gLogs(di,en,wk){return logs.filter(function(l){return l.d===di&&l.e===en&&l.w===wk;});}
+function dProg(day){
+  var names=[];
+  day.secs.forEach(function(s){s.items.forEach(function(i){names.push(i.n);});});
+  var done=logs.filter(function(l){return l.d===day.id&&l.w===cw&&names.indexOf(l.e)>-1;}).length;
+  return{done:done,total:names.length};
+}
+
+function go(n){
+  document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('on',i===n);});
+  document.querySelectorAll('.pg').forEach(function(p,i){p.classList.toggle('on',i===n);});
+  if(n===0&&!cd)renderHome();
+  else if(n===0&&cd){}
+  else if(n===1)renderLog();
+  else if(n===2)renderBench();
+}
+
+function renderNav(title,sub,back){
+  var h='';
+  if(back){
+    h='<div class="nav-row"><button class="bb" onclick="'+back+'"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button><div style="flex:1"><div class="nt" style="font-size:17px">'+title+'</div><div class="ns">'+sub+'</div></div></div>';
+  } else {
+    h='<div class="nav"><div class="nt">'+title+'</div><div class="ns">'+sub+'</div><div class="wpills" id="wpills"></div></div>';
+  }
+  document.getElementById('navArea').innerHTML=h;
+  if(!back){
+    document.getElementById('wpills').innerHTML=W.map(function(w,i){return '<button class="wpill'+(i===cw?' on':'')+'" onclick="cw='+i+';renderHome()">'+w+'</button>';}).join('');
+  }
+}
+
+function renderHome(){
+  cd=null;
+  renderNav('Motion Blueprint','Block 1 · Foundation & Bulletproofing',null);
+  var wl=logs.filter(function(l){return l.w===cw;});
+  var dd=wl.filter(function(v,i,a){return a.findIndex(function(t){return t.d===v.d;})===i;}).length;
+  var h='<div class="sgrid"><div class="sc"><div class="sv">'+wl.length+'</div><div class="sl">Sets logged this week</div></div><div class="sc"><div class="sv">'+dd+'</div><div class="sl">Days completed</div></div></div>';
+  h+='<div class="slbl">This week</div><div class="card">';
+  DAYS.forEach(function(day){
+    var p=dProg(day);
+    var done=p.done>0;
+    var pct=p.total>0?Math.round((p.done/p.total)*100):0;
+    h+='<div class="dr" onclick="openDay(\''+day.id+'\')">';
+    h+='<div class="di">'+day.ic+'</div>';
+    h+='<div style="flex:1;min-width:0"><div class="dn">'+day.lbl+' — '+day.ti+'</div><div class="df">'+day.su+' · '+day.dur+'</div>';
+    if(done)h+='<div class="pb"><div class="pf" style="width:'+pct+'%"></div></div>';
+    h+='</div><div style="display:flex;align-items:center;gap:7px">';
+    if(done)h+='<span class="dbg bem"><i class="ti ti-check" aria-hidden="true"></i> '+pct+'%</span>';
+    else h+='<span class="dbg bgr">'+day.rpe+'</span>';
+    h+='<i class="ti ti-chevron-right" style="font-size:15px;color:var(--text3)" aria-hidden="true"></i>';
+    h+='</div></div>';
+  });
+  h+='</div>';
+  h+='<div class="nbox"><i class="ti ti-pill" style="font-size:15px;margin-right:6px;vertical-align:-2px" aria-hidden="true"></i><strong>Daily stack:</strong> Creatine 5g in smoothie · Omega-3 with biggest meal · Magnesium glycinate 300mg before bed · Vitamin D weekly with fat-containing meal</div>';
+  document.getElementById('pg0').innerHTML=h;
+}
+
+function openDay(id){
+  var day=null;
+  for(var i=0;i<DAYS.length;i++){if(DAYS[i].id===id){day=DAYS[i];break;}}
+  if(!day)return;
+  cd=day;
+  renderNav(day.lbl+' — '+day.ti,day.su+' · '+W[cw],'goHomeFromDay()');
+  var h='<div class="dmr">';
+  h+='<div class="dmi"><div class="dmv">'+day.dur+'</div><div class="dml">Duration</div></div>';
+  h+='<div class="dmi"><div class="dmv">'+day.rpe+'</div><div class="dml">Target RPE</div></div>';
+  h+='<div class="dmi"><div class="dmv" style="font-size:12px;color:var(--wr)">'+day.inj.split('·')[0].trim()+'</div><div class="dml">Priority</div></div>';
+  h+='</div>';
+  day.secs.forEach(function(sec,si){
+    h+='<div class="slbl" style="padding-left:15px">'+sec.lbl+'</div><div class="card">';
+    sec.items.forEach(function(ex,ei){
+      var hasAlt=!!ex.alt;
+      var exLogs=gLogs(day.id,ex.n,cw);
+      var last=exLogs.length?exLogs[exLogs.length-1]:null;
+      var yt=YT[ex.n]||null;
+      var key='s'+si+'e'+ei;
+      h+='<div id="wrap'+key+'">';
+      h+='<div class="er">';
+      h+='<div class="em" onclick="openM(\''+day.id+'\','+si+','+ei+')">';
+      h+='<div class="en">'+ex.n+'</div><div class="ed">'+ex.d+'</div>';
+      if(ex.w)h+='<div class="ew"><i class="ti ti-alert-triangle" style="font-size:13px;flex-shrink:0" aria-hidden="true"></i>'+ex.w+'</div>';
+      if(last){
+        var ls=[]
+        if(last.sets&&last.reps)ls.push(last.sets+'x'+last.reps+' reps');
+        if(last.weight)ls.push('@'+last.weight+'lb');
+        if(last.time)ls.push(last.time+'s');
+        h+='<div class="el"><i class="ti ti-check" style="font-size:13px" aria-hidden="true"></i>'+ls.join(' ')+'</div>';
+      }
+      h+='</div>';
+      h+='<div class="ea">';
+      if(yt)h+='<button class="ib" onclick="event.stopPropagation();openYT(\''+yt+'\')" aria-label="Watch how-to video for '+ex.n.replace(/'/g,'')+'"><i class="ti ti-player-play" style="font-size:20px;color:var(--em)" aria-hidden="true"></i></button>';
+      if(hasAlt)h+='<button class="ab" onclick="event.stopPropagation();toggleAlt(\''+key+'\')">Alt</button>';
+      h+='<button class="ib" onclick="event.stopPropagation();openM(\''+day.id+'\','+si+','+ei+')" aria-label="Log '+ex.n.replace(/'/g,'')+'"><i class="ti ti-pencil" style="font-size:18px" aria-hidden="true"></i></button>';
+      h+='</div></div>';
+      if(hasAlt){
+        h+='<div class="ap" id="alt'+key+'">';
+        h+='<div class="albl">Alternate exercise</div>';
+        h+='<div class="an">'+ex.alt.n+'</div>';
+        h+='<div class="ad">'+ex.alt.d+'</div>';
+        if(ex.alt.c)h+='<div class="ad" style="margin-top:5px;font-style:italic">'+ex.alt.c+'</div>';
+        if(ex.alt.w)h+='<div class="ew" style="margin-top:5px"><i class="ti ti-alert-triangle" style="font-size:12px;flex-shrink:0" aria-hidden="true"></i>'+ex.alt.w+'</div>';
+        h+='<button class="ab" style="margin-top:9px" onclick="openMAlt(\''+day.id+'\','+si+','+ei+')">Log alternate</button>';
+        h+='</div>';
+      }
+      h+='</div>';
+    });
+    h+='</div>';
+  });
+  document.getElementById('pg0').innerHTML=h;
+  document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('on',i===0);});
+  document.querySelectorAll('.pg').forEach(function(p,i){p.classList.toggle('on',i===0);});
+  window.scrollTo(0,0);
+}
+
+function goHomeFromDay(){cd=null;renderHome();go(0);}
+
+function openYT(url){window.open(url,'_blank');}
+
+function toggleAlt(key){
+  var el=document.getElementById('alt'+key);
+  if(el)el.classList.toggle('on');
+}
+
+function openM(dayId,si,ei){
+  var day=null;
+  for(var i=0;i<DAYS.length;i++){if(DAYS[i].id===dayId){day=DAYS[i];break;}}
+  if(!day)return;
+  buildModal(dayId,day.secs[si].items[ei],day.secs[si].tp);
+}
+function openMAlt(dayId,si,ei){
+  var day=null;
+  for(var i=0;i<DAYS.length;i++){if(DAYS[i].id===dayId){day=DAYS[i];break;}}
+  if(!day||!day.secs[si].items[ei].alt)return;
+  buildModal(dayId,day.secs[si].items[ei].alt,day.secs[si].tp);
+}
+
+function buildModal(dayId,ex,tp){
+  var isActive=(tp==='st'||tp==='pw');
+  var exLogs=gLogs(dayId,ex.n,cw);
+  var last=exLogs.length?exLogs[exLogs.length-1]:null;
+  var yt=YT[ex.n]||null;
+  sr=last?last.rpe:null;
+  var h='<div class="mhdr"><div><div class="mt">'+ex.n+'</div><div class="ms">'+ex.d+'</div></div>';
+  h+='<button class="xbtn" onclick="closeM()" aria-label="Close modal"><i class="ti ti-x" style="font-size:16px" aria-hidden="true"></i></button></div>';
+  h+='<div class="mbdy">';
+  if(yt)h+='<button class="vbtn" onclick="openYT(\''+yt+'\')"><i class="ti ti-player-play" aria-hidden="true"></i>Watch how-to video</button>';
+  if(ex.c)h+='<div class="cbox"><i class="ti ti-info-circle" style="font-size:14px;margin-right:6px;vertical-align:-2px" aria-hidden="true"></i>'+ex.c+'</div>';
+  if(ex.w)h+='<div class="wbox"><i class="ti ti-alert-triangle" style="font-size:14px;margin-right:6px;vertical-align:-2px" aria-hidden="true"></i>'+ex.w+'</div>';
+  if(isActive){
+    h+='<div class="divl">Log this set</div>';
+    h+='<div class="fr"><div class="fg"><label class="fl" for="mS">Sets</label><input type="number" id="mS" min="1" max="10" placeholder="3" value="'+(last&&last.sets?last.sets:'')+'"></div>';
+    h+='<div class="fg"><label class="fl" for="mR">Reps</label><input type="number" id="mR" min="1" max="50" placeholder="8" value="'+(last&&last.reps?last.reps:'')+'"></div></div>';
+    h+='<div class="fr"><div class="fg"><label class="fl" for="mW">Weight (lbs)</label><input type="number" id="mW" min="0" max="500" step="2.5" placeholder="0" value="'+(last&&last.weight?last.weight:'')+'"></div>';
+    h+='<div class="fg"><label class="fl" for="mT">Time (sec)</label><input type="number" id="mT" min="0" max="600" placeholder="—" value="'+(last&&last.time?last.time:'')+'"></div></div>';
+    h+='<div class="fg"><label class="fl">RPE felt</label><div class="rpeg">';
+    [5,6,7,8,9,10].forEach(function(r){h+='<button class="rb'+(sr===r?' on':'')+'" onclick="pickR('+r+')">'+r+'</button>';});
+    h+='</div></div>';
+  } else {
+    h+='<div class="divl">Log completion</div>';
+    h+='<div class="fg"><label class="fl" for="mT">Duration (sec)</label><input type="number" id="mT" placeholder="60" value="'+(last&&last.time?last.time:'')+'"></div>';
+  }
+  h+='<div class="fg"><label class="fl" for="mN">Notes / how it felt</label><textarea id="mN" placeholder="e.g. ankle felt stable, 35lb felt easy, right side weaker...">'+(last&&last.notes?last.notes:'')+'</textarea></div>';
+  h+='<div class="ar"><button class="btn bout" style="flex:0.7" onclick="closeM()">Cancel</button>';
+  h+='<button class="btn bpri" style="flex:1.3" onclick="saveL(\''+dayId+'\',\''+encodeURIComponent(ex.n)+'\')">Save to log</button></div>';
+  if(exLogs.length){
+    h+='<div class="divl">Previous entries</div>';
+    var recent=exLogs.slice(-3).reverse();
+    recent.forEach(function(l){
+      var parts=[];
+      if(l.sets&&l.reps)parts.push(l.sets+' sets x '+l.reps+' reps');
+      if(l.weight)parts.push('@ '+l.weight+'lb');
+      if(l.time)parts.push(l.time+'s');
+      if(l.rpe)parts.push('RPE '+l.rpe);
+      h+='<div class="pe">'+parts.join(' · ')+(l.notes?' — <em>'+l.notes.substring(0,60)+'</em>':'')+'<br><span style="font-size:11px;color:var(--text3)">'+l.date+'</span></div>';
+    });
+    h+='<button class="btn bdng" style="margin-top:12px;width:100%" onclick="delL(\''+dayId+'\',\''+encodeURIComponent(ex.n)+'\')">Delete last entry</button>';
+  }
+  h+='</div>';
+  document.getElementById('mbox').innerHTML=h;
+  document.getElementById('mwrap').classList.add('on');
+}
+
+function handleOvClick(e){if(e.target===document.getElementById('mwrap'))closeM();}
+function closeM(){document.getElementById('mwrap').classList.remove('on');sr=null;}
+function pickR(r){
+  sr=r;
+  document.querySelectorAll('.rb').forEach(function(b){b.classList.toggle('on',parseInt(b.textContent)===r);});
+}
+
+function saveL(dayId,exEnc){
+  var exName=decodeURIComponent(exEnc);
+  var dl='';
+  for(var i=0;i<DAYS.length;i++){if(DAYS[i].id===dayId){dl=DAYS[i].lbl;break;}}
+  var entry={
+    id:Date.now(),
+    date:new Date().toISOString().split('T')[0],
+    w:cw,d:dayId,dl:dl,e:exName,
+    sets:document.getElementById('mS')?document.getElementById('mS').value:'',
+    reps:document.getElementById('mR')?document.getElementById('mR').value:'',
+    weight:document.getElementById('mW')?document.getElementById('mW').value:'',
+    time:document.getElementById('mT')?document.getElementById('mT').value:'',
+    rpe:sr,
+    notes:document.getElementById('mN')?document.getElementById('mN').value:''
+  };
+  logs.push(entry);
+  sav();sr=null;closeM();
+  if(cd)openDay(cd.id);else renderHome();
+}
+
+function delL(dayId,exEnc){
+  var exName=decodeURIComponent(exEnc);
+  var idx=-1;
+  for(var i=logs.length-1;i>=0;i--){if(logs[i].e===exName&&logs[i].d===dayId&&logs[i].w===cw){idx=i;break;}}
+  if(idx>-1)logs.splice(idx,1);
+  sav();closeM();
+  if(cd)openDay(cd.id);
+}
+
+function renderLog(){
+  cd=null;
+  renderNav('Training log','All sessions logged',null);
+  if(!logs.length){
+    document.getElementById('pg1').innerHTML='<div class="empty"><i class="ti ti-clipboard-list" aria-hidden="true"></i><p>No sets logged yet.<br>Go to Home, pick a day,<br>and tap any exercise to start.</p></div>';
+    return;
+  }
+  var grouped={};
+  var rev=logs.slice().reverse();
+  rev.forEach(function(l){
+    var k=(W[l.w]||'Week '+(l.w+1))+' — '+(l.dl||l.d);
+    if(!grouped[k])grouped[k]=[];
+    grouped[k].push(l);
+  });
+  var h='';
+  Object.keys(grouped).forEach(function(k){
+    h+='<div class="slbl">'+k+'</div><div class="card">';
+    grouped[k].forEach(function(l){
+      var parts=[];
+      if(l.sets&&l.reps)parts.push(l.sets+' sets x '+l.reps+' reps');
+      else if(l.sets)parts.push(l.sets+' sets');
+      else if(l.reps)parts.push(l.reps+' reps');
+      if(l.weight)parts.push('@ '+l.weight+'lb');
+      if(l.time)parts.push(l.time+'s');
+      if(l.rpe)parts.push('RPE '+l.rpe);
+      h+='<div class="le"><div style="flex:1;min-width:0"><div class="ln">'+l.e+'</div>';
+      h+='<div class="ld">'+parts.join(' · ')+'</div>';
+      if(l.notes)h+='<div class="ld" style="font-style:italic;margin-top:2px">'+l.notes+'</div>';
+      h+='</div><div class="ldt">'+l.date+'</div></div>';
+    });
+    h+='</div>';
+  });
+  document.getElementById('pg1').innerHTML=h;
+}
+
+function renderBench(){
+  cd=null;
+  renderNav('Week 4 benchmarks','Run at end of Block 1',null);
+  var h='<div class="nbox" style="margin:14px">Run these at the end of Week 4. These are movement quality checks — not max effort tests. All results export with your training log CSV.</div>';
+  BENCH.forEach(function(cat){
+    h+='<div class="slbl">'+cat.em+' '+cat.cat+'</div><div class="card">';
+    cat.fields.forEach(function(f){
+      h+='<div class="bf"><label class="bl" for="bm'+f.k+'">'+f.l+'</label>';
+      h+='<input type="text" id="bm'+f.k+'" value="'+(bmks[f.k]||'')+'" placeholder="Enter result…" oninput="bmks[\''+f.k+'\']=this.value;sav()"></div>';
+    });
+    h+='</div>';
+  });
+  h+='<div style="padding:0 14px 32px"><button class="btn bpri" style="width:100%;padding:14px" onclick="doExport()"><i class="ti ti-download" aria-hidden="true"></i>  Export all data to CSV</button></div>';
+  document.getElementById('pg2').innerHTML=h;
+}
+
+function doExport(){
+  var rows=[['Date','Week','Day','Exercise','Sets','Reps','Weight (lbs)','Time (sec)','RPE','Notes']];
+  logs.forEach(function(l){
+    rows.push([
+      l.date,W[l.w]||('Week '+(l.w+1)),l.dl||l.d,l.e,
+      l.sets||'',l.reps||'',l.weight||'',l.time||'',l.rpe||'',
+      '"'+(l.notes||'').replace(/"/g,'""')+'"'
+    ]);
+  });
+  rows.push([]);rows.push(['BENCHMARKS']);rows.push(['Category','Metric','Result']);
+  BENCH.forEach(function(cat){cat.fields.forEach(function(f){rows.push([cat.cat,f.l,bmks[f.k]||'']);});});
+  var csv=rows.map(function(r){return r.join(',');}).join('\n');
+  try{
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+    a.download='Karan_Block1_TrainingLog_'+new Date().toISOString().split('T')[0]+'.csv';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    var t=document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show');},2500);
+  }catch(e){alert('Export failed. Try from a desktop browser.');}
+  document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('on',i===0);});
+}
+
+renderHome();
+</script>
+</body>
+</html>
