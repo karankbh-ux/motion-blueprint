@@ -7,7 +7,22 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Motion Blueprint">
 <title>Motion Blueprint — Karan Block 1</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>@font-face{font-family:'tabler-icons';font-style:normal;font-weight:400;src:url('data:font/woff2;base64,d09GMgABAAAAAAe4AAsAAAAAFEgAAAdqAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCoGYACBHAqheJsgATYCJAMiCyAABCAFgQoHIBsLEKOiXi1OZoC/OrANMdchH6DB6MPzcWcZE4ORLI/bGDab2HHRFefoy4+QZ0mHdfnZMewuG37d+7C7DzCtrYQtQ4cvsGkVQJqT6lJZKIs8eu9zjpg9efagSimFpOKmeqiRK72pmKu+QL+7gviv3fJOULuSTJeEJGlNzJp48wd+/LVMN/iOSujM39cZ3QotvCzbyqyY+M8Bkag/1z5t9gCw9sBWSAJVYyp03ss7zHZmJ1tK9xf4AChXfAUA2amqMMeujM7WiNocZR3o91hEQFa2l9yfAwgAvkmZ3Jc6jVqBeO8+aghoeQIA/A+N1FZLd3PAVIoOd9NflavBB0oM6NkIEfRui1vtXvD+1vtDncz471nzEPpxZrAV3TzcoJQ0vOR6GlizUO33icv7bczbpLftq0t1r8G15O337fl3nu9av7W+OtmehM3/MuLbm4jnEdvl2WyFEeqpzUd57jK7BG4aLYFnFokU4s4kL1FSsFz4lKvj3qDQWDESyyEELEMUFH7DRHxGCOBUq3ZN1HFbspX8SLEhugX8xYEUAb2r8Q2EU7cxxkEZ0/yrZ03SDGIWbj8WnPav+evGdl+j7X39QCMWSE5vI56zJX3O91P166fLXdUaNk+VkBatrBmqE/RWcf2YSDK6JGnYOhtf7FyMz1SH3jcHLsQCGEZA5oxZr7G2KlrX/LuaMYjSWcOa4nqkpDS8WXiUef1iTmo2B80bZileIPjWLzoJtGjCZjbb2rhnYGR/wYO8YwG0MZD9aSa+vyoVc62kih8FXksuIKKL5Nmm+HbxCAYmZvwlZs5VbbXrrImutwitkAzDRg30VT1Ycq5DDBWf1E3/5sSplYjwLRMxo+sT7lLxIiE85Of6n77pXZ4Yuxoxr/gtrhlfnRgz50oC7lqdhfZl1DTTLdFZmPQY2lUZHff8qFHG7lznS23uytLODsYLNXD3d2c1mTN/RpXKi8aHvYhjyjJBLoWtHMyX8EVyrr/7y9vvxG5sc7jtTPF2ndSAHGozKZ2pi24jDZBfY9+8kR9KxwJ1WE3KHXUTdFetdzpP3TRIu/ShG37p9ULGMNBXxiwUmkXLxJqmLLP+zDlPSvYtpoTV4XlsxzkZ+9qfegxjE85bx56Xw9RNs9pnbGje/MnPqR81RTO8flLmNK/zboG6YBwu91R5/fy1NCzqmIeChDSvXvXuax/bpWxTTkedvn3SsOUVCqv9HgoouIqOGGd4PduUG75lVqCGm1AjFd+h5isw9He1QpvvjSm2euHOGAeqXPSf+HpKrAM+N4dNoveJKj3af0i1If7tIzfkRFZY7xfu13b4g1cEoEBgKlcZoADDjhrWQ414rJQkXS6Ta9QUUMfk5iUmScN0Hldpl2FylYCUEL3AOMqBbyq6jdqKGjOYRpLhyjAGQ5vWFShYgfHwAiaUMRyIKZoYqlz19NRQ5ZKER8AhMigfTf4LFI3nIRx10pE23MIyeAjaSEQ6rp9vS61HXUkAH03+N+vEWdb1GKSLr1DTG6ayuo/v5ALrMhX27ZAkr9+QXOXy+nWTn42SXK5bp1NYCtobFlkul0n6oSnD28yEsAi9Yd1+FNhy8pKWKCbsdvjRidqgV4t+LvuOAX7nHkoC+TqrFFkELXqxYevKiFL9Zf9lTl9ioI96tURPzaN0KvHk54iu/NWsPs/gkI2mRi8IMO0fudgKUerr6knRU4lNDWZ9JwygKTGEDlRgAAClVlcvipmSCXFrGdQR0hwNqBuhqLGWpXuqJdOMw7v/FQYmdQcYryMbZUIa6LydxBZYHb/rlBQmKESzgv6Kni39h2UtlFzeuC7PgXVdbOHnIiXpqG6jLJ5VFAX7XuPnfGcCXPY8g+UBFJljxtQMxabpmyyyLlBTomjvOrTV5NfrnIIapk4upYerKY1LBp6aRxlta4k6FqBObHqu20jUULwrt+KqqxJRKDBjK7znhhb24eW7le3SpWy38k+/pCi7UqWHW8zRMbdRTsOGOY1yD31JUXalqrHj2MMsnYxeV1yZX+eUzPlpmA3SHVqL6D+v+5UbKEYweeAnBEyo8adh3n1FJZcHDkrSyHrMwwu3fghvEd48vznphyMvbFM1v2pvkwQtf2+RPHigjJKfMOnhqmDVO002SRqGERxNHIrvy9NG5rdvlQSyKQGQLwDxfljdWdqnNGq0SyUL8jHP4fj/yZOTJ3XtOgnz/pdckPxPaRnx/zpDW/2XpPGAOl7BiuVSH5PIIpVHAavpw1S2InWgeUrfsUXdTmj8elg8iUZNgyvbhr3W2dtRCRCNDsHkf9Ac8jip6mPzGu4H8hfzyRvoPse4rxwL/n+yMR4lSBIQkl6sI6BP1Nr9C3Q0Wt9YqZyuaYiHP0j4/Vnl5p+81TWk0g9fQS4dAIDP1Jh9qL+ptizvPWZAGxcCvNR/pRbuFuIPhxcR0nlDg36dkvxQ/pzLx0/+H06ah8E22zdoQf0KREx7Jh47cwIVBLV0TeLdS/wCUsIKpvQXlJVRtKy1UeWX5zcMG1FU5yWsSiiqOA/NpvkAAAA=') format('woff2')}
+.ti{font-family:'tabler-icons';font-style:normal;font-variant:normal;font-weight:normal;line-height:1;display:inline-block;text-transform:none;letter-spacing:normal;word-wrap:normal;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-feature-settings:'liga';vertical-align:middle}
+.ti-alert-triangle:before{content:"\ea06"}
+.ti-arrow-left:before{content:"\ea19"}
+.ti-arrow-right:before{content:"\ea1f"}
+.ti-chart-bar:before{content:"\ea59"}
+.ti-check:before{content:"\ea5e"}
+.ti-chevron-right:before{content:"\ea61"}
+.ti-clipboard-list:before{content:"\ea6d"}
+.ti-download:before{content:"\ea96"}
+.ti-home:before{content:"\eac1"}
+.ti-info-circle:before{content:"\eac5"}
+.ti-pencil:before{content:"\eb04"}
+.ti-x:before{content:"\eb55"}
+.ti-pill:before{content:"\ec44"}
+.ti-player-play:before{content:"\ed46"}</style>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
@@ -40,6 +55,7 @@
   }
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',sans-serif;font-size:16px;line-height:1.4;overscroll-behavior:none}
+body.modal-open{overflow:hidden}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .app{max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:var(--bg)}
 
@@ -120,10 +136,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .dmv{font-size:14px;font-weight:600;color:var(--em)}
 .dml{font-size:11px;color:var(--text2);margin-top:2px}
 
-/* MODAL OVERLAY — in-flow faux viewport */
-.mwrap{display:none;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;padding:20px 16px;min-height:500px}
+/* MODAL OVERLAY — true fixed center */
+.mwrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:500;align-items:flex-start;justify-content:center;padding:60px 16px 24px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .mwrap.on{display:flex}
-.mbox{background:var(--card);border-radius:22px;width:100%;max-width:440px;max-height:82vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+@keyframes modalIn{from{opacity:0;transform:scale(0.94) translateY(-12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.mbox{background:var(--card);border-radius:22px;width:100%;max-width:440px;flex-shrink:0;animation:modalIn 0.2s ease;overflow:hidden}
 .mhdr{padding:16px 16px 13px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--card);z-index:2;border-radius:22px 22px 0 0}
 .mt{font-size:17px;font-weight:600;color:var(--text);flex:1;letter-spacing:-0.2px}
 .ms{font-size:12px;color:var(--text2);margin-top:3px}
@@ -194,7 +211,7 @@ textarea{height:68px;resize:none;line-height:1.5}
   <div id="pg2" class="pg"></div>
 </div>
 
-<div class="mwrap" id="mwrap" onclick="handleOvClick(event)">
+<div class="mwrap" id="mwrap" onclick="handleOvClick(event)" role="dialog" aria-modal="true" aria-label="Exercise detail">
   <div class="mbox" id="mbox"></div>
 </div>
 
@@ -409,6 +426,37 @@ var BENCH=[
  {cat:'General fitness',em:'💪',fields:[{k:'pu',l:'Max push-ups (unbroken)'},{k:'row',l:'500m row time (M:SS)'},{k:'gs',l:'Goblet squat 8 clean reps (lbs)'},{k:'rdl',l:'DB RDL 8 reps/side (lbs)'}]}
 ];
 
+var WEEK_CONFIG=[
+  {
+    theme:'Orientation',rpe:'6–7',vol:'Moderate',
+    color:'#185FA5',colorLight:'#E6F1FB',colorText:'#042C53',
+    focus:'Establish your baselines. Choose weights you can own with perfect form.',
+    instruction:'You should have 3–4 reps left in the tank at the end of each set. Do NOT go to failure.',
+    overload:'Log every weight used this week. Week 2 you will add 5lbs or 1 rep to each main lift.'
+  },
+  {
+    theme:'Build',rpe:'7–8',vol:'Moderate–High',
+    color:'#0F6E56',colorLight:'#E1F5EE',colorText:'#04342C',
+    focus:'Add 5lbs or 1 rep to every main lift vs Week 1. Push harder through supersets.',
+    instruction:'You should have 2–3 reps left at the end of each working set. If it feels easy, add weight.',
+    overload:'Lower body: +5lbs vs Week 1. Upper body: +2.5–5lbs. Single-leg work: +1 rep only.'
+  },
+  {
+    theme:'Overreach',rpe:'8–9',vol:'High',
+    color:'#993C1D',colorLight:'#FAECE7',colorText:'#4A1B0C',
+    focus:'Peak effort week. Push to 1–2 reps from failure on main lifts. Test your ceiling.',
+    instruction:'RPE 8–9 means 1–2 reps left in the tank. This should feel hard. Add weight or +1 set vs Week 2.',
+    overload:'Add +5lbs or +1 set to your two strongest lifts. Finisher: add 1 extra round if energy allows.'
+  },
+  {
+    theme:'Deload & Reassess',rpe:'5–6',vol:'Low (–40%)',
+    color:'#533AB7',colorLight:'#EEEDFE',colorText:'#26215C',
+    focus:'Recovery week. Cut sets by half, drop weight 20–30%. Run benchmarks on Friday.',
+    instruction:'If it feels too easy, that is correct. This week is about quality of movement, not effort.',
+    overload:'No PRs this week. Run all benchmark tests on Friday. Export CSV and send to your coach.'
+  }
+];
+
 function sav(){try{localStorage.setItem('mb_logs',JSON.stringify(logs));localStorage.setItem('mb_bmks',JSON.stringify(bmks));}catch(e){}}
 function gLogs(di,en,wk){return logs.filter(function(l){return l.d===di&&l.e===en&&l.w===wk;});}
 function dProg(day){
@@ -445,24 +493,47 @@ function renderHome(){
   renderNav('Motion Blueprint','Block 1 · Foundation & Bulletproofing',null);
   var wl=logs.filter(function(l){return l.w===cw;});
   var dd=wl.filter(function(v,i,a){return a.findIndex(function(t){return t.d===v.d;})===i;}).length;
-  var h='<div class="sgrid"><div class="sc"><div class="sv">'+wl.length+'</div><div class="sl">Sets logged this week</div></div><div class="sc"><div class="sv">'+dd+'</div><div class="sl">Days completed</div></div></div>';
-  h+='<div class="slbl">This week</div><div class="card">';
+  var wc=WEEK_CONFIG[cw];
+
+  var h='';
+
+  h+='<div style="margin:14px 14px 0;background:'+wc.colorLight+';border-radius:14px;border:0.5px solid '+wc.color+'40;overflow:hidden">';
+  h+='<div style="background:'+wc.color+';padding:11px 15px;display:flex;align-items:center;justify-content:space-between">';
+  h+='<div style="font-size:15px;font-weight:600;color:#fff">'+W[cw]+'</div>';
+  h+='<div style="font-size:12px;color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.2);padding:3px 10px;border-radius:20px">'+wc.theme+'</div>';
+  h+='</div>';
+  h+='<div style="padding:12px 15px">';
+  h+='<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:11px">';
+  h+='<div style="text-align:center;background:rgba(255,255,255,0.6);border-radius:10px;padding:10px 6px"><div style="font-size:20px;font-weight:600;color:'+wc.color+'">'+wl.length+'</div><div style="font-size:10px;color:'+wc.colorText+';margin-top:2px">Sets logged</div></div>';
+  h+='<div style="text-align:center;background:rgba(255,255,255,0.6);border-radius:10px;padding:10px 6px"><div style="font-size:20px;font-weight:600;color:'+wc.color+'">'+dd+'</div><div style="font-size:10px;color:'+wc.colorText+';margin-top:2px">Days done</div></div>';
+  h+='<div style="text-align:center;background:rgba(255,255,255,0.6);border-radius:10px;padding:10px 6px"><div style="font-size:20px;font-weight:600;color:'+wc.color+'">'+wc.rpe+'</div><div style="font-size:10px;color:'+wc.colorText+';margin-top:2px">Target RPE</div></div>';
+  h+='</div>';
+  h+='<div style="font-size:13px;color:'+wc.colorText+';line-height:1.6;margin-bottom:6px"><strong>Focus:</strong> '+wc.focus+'</div>';
+  h+='<div style="font-size:12px;color:'+wc.colorText+';line-height:1.6;opacity:0.85"><i class="ti ti-arrow-right" style="font-size:13px;margin-right:4px;vertical-align:-2px" aria-hidden="true"></i>'+wc.overload+'</div>';
+  h+='</div></div>';
+
+  h+='<div class="slbl" style="margin-top:4px">Sessions this week</div><div class="card">';
   DAYS.forEach(function(day){
     var p=dProg(day);
     var done=p.done>0;
     var pct=p.total>0?Math.round((p.done/p.total)*100):0;
+    var weekRpe=cw===3?'5–6':(cw===2?'8–9':(cw===1?'7–8':day.rpe));
     h+='<div class="dr" onclick="openDay(\''+day.id+'\')">';
     h+='<div class="di">'+day.ic+'</div>';
     h+='<div style="flex:1;min-width:0"><div class="dn">'+day.lbl+' — '+day.ti+'</div><div class="df">'+day.su+' · '+day.dur+'</div>';
-    if(done)h+='<div class="pb"><div class="pf" style="width:'+pct+'%"></div></div>';
+    if(done)h+='<div class="pb"><div class="pf" style="width:'+pct+'%;background:'+wc.color+'"></div></div>';
     h+='</div><div style="display:flex;align-items:center;gap:7px">';
-    if(done)h+='<span class="dbg bem"><i class="ti ti-check" aria-hidden="true"></i> '+pct+'%</span>';
-    else h+='<span class="dbg bgr">'+day.rpe+'</span>';
+    if(done)h+='<span class="dbg bem" style="background:'+wc.colorLight+';color:'+wc.colorText+'"><i class="ti ti-check" aria-hidden="true"></i> '+pct+'%</span>';
+    else h+='<span class="dbg bgr">RPE '+weekRpe+'</span>';
     h+='<i class="ti ti-chevron-right" style="font-size:15px;color:var(--text3)" aria-hidden="true"></i>';
     h+='</div></div>';
   });
   h+='</div>';
-  h+='<div class="nbox"><i class="ti ti-pill" style="font-size:15px;margin-right:6px;vertical-align:-2px" aria-hidden="true"></i><strong>Daily stack:</strong> Creatine 5g in smoothie · Omega-3 with biggest meal · Magnesium glycinate 300mg before bed · Vitamin D weekly with fat-containing meal</div>';
+
+  h+='<div style="margin:0 14px 12px;background:var(--eml);border-radius:14px;padding:12px 15px;font-size:13px;color:var(--emt);line-height:1.6">';
+  h+='<i class="ti ti-pill" style="font-size:14px;margin-right:5px;vertical-align:-2px" aria-hidden="true"></i>';
+  h+='<strong>Daily stack:</strong> Creatine 5g in smoothie · Omega-3 with biggest meal · Magnesium glycinate 300mg before bed · Vitamin D weekly with fat-containing meal</div>';
+
   document.getElementById('pg0').innerHTML=h;
 }
 
@@ -471,10 +542,20 @@ function openDay(id){
   for(var i=0;i<DAYS.length;i++){if(DAYS[i].id===id){day=DAYS[i];break;}}
   if(!day)return;
   cd=day;
+  var wc=WEEK_CONFIG[cw];
+  var weekRpe=cw===3?'5–6':(cw===2?'8–9':(cw===1?'7–8':day.rpe));
   renderNav(day.lbl+' — '+day.ti,day.su+' · '+W[cw],'goHomeFromDay()');
-  var h='<div class="dmr">';
+  var h='';
+  h+='<div style="background:'+wc.color+';padding:8px 15px;display:flex;align-items:center;justify-content:space-between">';
+  h+='<div style="font-size:12px;color:rgba(255,255,255,0.9)">'+wc.theme+' · '+wc.vol+'</div>';
+  h+='<div style="font-size:12px;color:#fff;font-weight:600;background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:20px">RPE '+weekRpe+' today</div>';
+  h+='</div>';
+  h+='<div style="background:'+wc.colorLight+';border-bottom:0.5px solid '+wc.color+'30;padding:10px 15px">';
+  h+='<div style="font-size:12px;color:'+wc.colorText+';line-height:1.6"><i class="ti ti-info-circle" style="font-size:13px;margin-right:4px;vertical-align:-2px" aria-hidden="true"></i>'+wc.instruction+'</div>';
+  h+='</div>';
+  h+='<div class="dmr">';
   h+='<div class="dmi"><div class="dmv">'+day.dur+'</div><div class="dml">Duration</div></div>';
-  h+='<div class="dmi"><div class="dmv">'+day.rpe+'</div><div class="dml">Target RPE</div></div>';
+  h+='<div class="dmi"><div class="dmv" style="color:'+wc.color+'">'+weekRpe+'</div><div class="dml">Target RPE</div></div>';
   h+='<div class="dmi"><div class="dmv" style="font-size:12px;color:var(--wr)">'+day.inj.split('·')[0].trim()+'</div><div class="dml">Priority</div></div>';
   h+='</div>';
   day.secs.forEach(function(sec,si){
@@ -546,7 +627,8 @@ function openMAlt(dayId,si,ei){
 }
 
 function buildModal(dayId,ex,tp){
-  var isActive=(tp==='st'||tp==='pw');
+  var isSport=(dayId==='d6');
+  var isActive=(tp==='st'||tp==='pw')&&!isSport;
   var exLogs=gLogs(dayId,ex.n,cw);
   var last=exLogs.length?exLogs[exLogs.length-1]:null;
   var yt=YT[ex.n]||null;
@@ -557,7 +639,28 @@ function buildModal(dayId,ex,tp){
   if(yt)h+='<button class="vbtn" onclick="openYT(\''+yt+'\')"><i class="ti ti-player-play" aria-hidden="true"></i>Watch how-to video</button>';
   if(ex.c)h+='<div class="cbox"><i class="ti ti-info-circle" style="font-size:14px;margin-right:6px;vertical-align:-2px" aria-hidden="true"></i>'+ex.c+'</div>';
   if(ex.w)h+='<div class="wbox"><i class="ti ti-alert-triangle" style="font-size:14px;margin-right:6px;vertical-align:-2px" aria-hidden="true"></i>'+ex.w+'</div>';
-  if(isActive){
+
+  if(isSport){
+    h+='<div class="divl">Log this session</div>';
+    h+='<div class="fr"><div class="fg"><label class="fl" for="mDur">Duration (min)</label><input type="number" id="mDur" min="0" max="480" placeholder="60" value="'+(last&&last.sportDur?last.sportDur:'')+'"></div>';
+    h+='<div class="fg"><label class="fl" for="mCal">Calories burned</label><input type="number" id="mCal" min="0" max="5000" placeholder="—" value="'+(last&&last.sportCal?last.sportCal:'')+'"></div></div>';
+    h+='<div class="fr"><div class="fg"><label class="fl" for="mHR">Avg heart rate (bpm)</label><input type="number" id="mHR" min="0" max="220" placeholder="—" value="'+(last&&last.sportHR?last.sportHR:'')+'"></div>';
+    h+='<div class="fg"><label class="fl" for="mPeak">Peak heart rate (bpm)</label><input type="number" id="mPeak" min="0" max="220" placeholder="—" value="'+(last&&last.sportPeak?last.sportPeak:'')+'"></div></div>';
+    h+='<div class="fg"><label class="fl" for="mFeel">How did it feel?</label>';
+    var feelVal=last&&last.sportFeel?last.sportFeel:'';
+    h+='<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:4px">';
+    ['Great','Good','OK','Tough'].forEach(function(f){
+      h+='<button onclick="pickFeel(\''+f+'\')" id="feel_'+f+'" style="padding:9px 4px;border-radius:9px;font-size:13px;border:0.5px solid var(--border2);background:'+(feelVal===f?'var(--em)':'var(--surf)')+';color:'+(feelVal===f?'#fff':'var(--text2)')+';cursor:pointer;font-family:inherit">'+f+'</button>';
+    });
+    h+='</div></div>';
+    h+='<div class="fg"><label class="fl" for="mAnkle">Left ankle on jumps (0=no pain, 10=severe)</label>';
+    h+='<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-top:4px">';
+    var ankleVal=last&&last.sportAnkle!==undefined?last.sportAnkle:null;
+    [0,1,2,3,4,5].forEach(function(n){
+      h+='<button onclick="pickAnkle('+n+')" id="ankle_'+n+'" style="padding:8px 4px;border-radius:8px;font-size:13px;border:0.5px solid var(--border2);background:'+(ankleVal===n?'var(--em)':'var(--surf)')+';color:'+(ankleVal===n?'#fff':'var(--text2)')+';cursor:pointer;font-family:inherit">'+n+'</button>';
+    });
+    h+='</div></div>';
+  } else if(isActive){
     h+='<div class="divl">Log this set</div>';
     h+='<div class="fr"><div class="fg"><label class="fl" for="mS">Sets</label><input type="number" id="mS" min="1" max="10" placeholder="3" value="'+(last&&last.sets?last.sets:'')+'"></div>';
     h+='<div class="fg"><label class="fl" for="mR">Reps</label><input type="number" id="mR" min="1" max="50" placeholder="8" value="'+(last&&last.reps?last.reps:'')+'"></div></div>';
@@ -570,29 +673,64 @@ function buildModal(dayId,ex,tp){
     h+='<div class="divl">Log completion</div>';
     h+='<div class="fg"><label class="fl" for="mT">Duration (sec)</label><input type="number" id="mT" placeholder="60" value="'+(last&&last.time?last.time:'')+'"></div>';
   }
-  h+='<div class="fg"><label class="fl" for="mN">Notes / how it felt</label><textarea id="mN" placeholder="e.g. ankle felt stable, 35lb felt easy, right side weaker...">'+(last&&last.notes?last.notes:'')+'</textarea></div>';
+
+  h+='<div class="fg"><label class="fl" for="mN">'+(isSport?'Notes — how did your body feel?':'Notes / how it felt')+'</label><textarea id="mN" placeholder="'+(isSport?'e.g. ankle felt solid on jumps, good rotation on drive, felt strong...':'e.g. ankle felt stable, 35lb felt easy...')+'">'+(last&&last.notes?last.notes:'')+'</textarea></div>';
   h+='<div class="ar"><button class="btn bout" style="flex:0.7" onclick="closeM()">Cancel</button>';
   h+='<button class="btn bpri" style="flex:1.3" onclick="saveL(\''+dayId+'\',\''+encodeURIComponent(ex.n)+'\')">Save to log</button></div>';
+
   if(exLogs.length){
-    h+='<div class="divl">Previous entries</div>';
+    h+='<div class="divl">Previous sessions</div>';
     var recent=exLogs.slice(-3).reverse();
     recent.forEach(function(l){
       var parts=[];
-      if(l.sets&&l.reps)parts.push(l.sets+' sets x '+l.reps+' reps');
-      if(l.weight)parts.push('@ '+l.weight+'lb');
-      if(l.time)parts.push(l.time+'s');
-      if(l.rpe)parts.push('RPE '+l.rpe);
+      if(isSport){
+        if(l.sportDur)parts.push(l.sportDur+' min');
+        if(l.sportCal)parts.push(l.sportCal+' cal');
+        if(l.sportHR)parts.push('HR '+l.sportHR+'bpm');
+        if(l.sportFeel)parts.push(l.sportFeel);
+      } else {
+        if(l.sets&&l.reps)parts.push(l.sets+' sets x '+l.reps+' reps');
+        if(l.weight)parts.push('@ '+l.weight+'lb');
+        if(l.time)parts.push(l.time+'s');
+        if(l.rpe)parts.push('RPE '+l.rpe);
+      }
       h+='<div class="pe">'+parts.join(' · ')+(l.notes?' — <em>'+l.notes.substring(0,60)+'</em>':'')+'<br><span style="font-size:11px;color:var(--text3)">'+l.date+'</span></div>';
     });
     h+='<button class="btn bdng" style="margin-top:12px;width:100%" onclick="delL(\''+dayId+'\',\''+encodeURIComponent(ex.n)+'\')">Delete last entry</button>';
   }
   h+='</div>';
   document.getElementById('mbox').innerHTML=h;
-  document.getElementById('mwrap').classList.add('on');
+  openModal();
+}
+
+var selFeel=null;var selAnkle=null;
+function pickFeel(f){
+  selFeel=f;
+  ['Great','Good','OK','Tough'].forEach(function(v){
+    var el=document.getElementById('feel_'+v);
+    if(el){el.style.background=v===f?'var(--em)':'var(--surf)';el.style.color=v===f?'#fff':'var(--text2)';}
+  });
+}
+function pickAnkle(n){
+  selAnkle=n;
+  [0,1,2,3,4,5].forEach(function(v){
+    var el=document.getElementById('ankle_'+v);
+    if(el){el.style.background=v===n?'var(--em)':'var(--surf)';el.style.color=v===n?'#fff':'var(--text2)';}
+  });
 }
 
 function handleOvClick(e){if(e.target===document.getElementById('mwrap'))closeM();}
-function closeM(){document.getElementById('mwrap').classList.remove('on');sr=null;}
+function closeM(){
+  document.getElementById('mwrap').classList.remove('on');
+  document.body.style.overflow='';
+  sr=null;
+}
+function openModal(){
+  document.getElementById('mwrap').classList.add('on');
+  document.body.style.overflow='hidden';
+  document.getElementById('mwrap').scrollTop=0;
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeM();});
 function pickR(r){
   sr=r;
   document.querySelectorAll('.rb').forEach(function(b){b.classList.toggle('on',parseInt(b.textContent)===r);});
@@ -602,6 +740,7 @@ function saveL(dayId,exEnc){
   var exName=decodeURIComponent(exEnc);
   var dl='';
   for(var i=0;i<DAYS.length;i++){if(DAYS[i].id===dayId){dl=DAYS[i].lbl;break;}}
+  var isSport=(dayId==='d6');
   var entry={
     id:Date.now(),
     date:new Date().toISOString().split('T')[0],
@@ -613,8 +752,16 @@ function saveL(dayId,exEnc){
     rpe:sr,
     notes:document.getElementById('mN')?document.getElementById('mN').value:''
   };
+  if(isSport){
+    entry.sportDur=document.getElementById('mDur')?document.getElementById('mDur').value:'';
+    entry.sportCal=document.getElementById('mCal')?document.getElementById('mCal').value:'';
+    entry.sportHR=document.getElementById('mHR')?document.getElementById('mHR').value:'';
+    entry.sportPeak=document.getElementById('mPeak')?document.getElementById('mPeak').value:'';
+    entry.sportFeel=selFeel||'';
+    entry.sportAnkle=selAnkle!==null?selAnkle:'';
+  }
   logs.push(entry);
-  sav();sr=null;closeM();
+  sav();sr=null;selFeel=null;selAnkle=null;closeM();
   if(cd)openDay(cd.id);else renderHome();
 }
 
@@ -645,13 +792,23 @@ function renderLog(){
   Object.keys(grouped).forEach(function(k){
     h+='<div class="slbl">'+k+'</div><div class="card">';
     grouped[k].forEach(function(l){
+      var isSport=(l.d==='d6');
       var parts=[];
-      if(l.sets&&l.reps)parts.push(l.sets+' sets x '+l.reps+' reps');
-      else if(l.sets)parts.push(l.sets+' sets');
-      else if(l.reps)parts.push(l.reps+' reps');
-      if(l.weight)parts.push('@ '+l.weight+'lb');
-      if(l.time)parts.push(l.time+'s');
-      if(l.rpe)parts.push('RPE '+l.rpe);
+      if(isSport){
+        if(l.sportDur)parts.push(l.sportDur+' min');
+        if(l.sportCal)parts.push(l.sportCal+' cal');
+        if(l.sportHR)parts.push('Avg HR '+l.sportHR+'bpm');
+        if(l.sportPeak)parts.push('Peak '+l.sportPeak+'bpm');
+        if(l.sportFeel)parts.push(l.sportFeel);
+        if(l.sportAnkle!==undefined&&l.sportAnkle!=='')parts.push('Ankle '+l.sportAnkle+'/5');
+      } else {
+        if(l.sets&&l.reps)parts.push(l.sets+' sets x '+l.reps+' reps');
+        else if(l.sets)parts.push(l.sets+' sets');
+        else if(l.reps)parts.push(l.reps+' reps');
+        if(l.weight)parts.push('@ '+l.weight+'lb');
+        if(l.time)parts.push(l.time+'s');
+        if(l.rpe)parts.push('RPE '+l.rpe);
+      }
       h+='<div class="le"><div style="flex:1;min-width:0"><div class="ln">'+l.e+'</div>';
       h+='<div class="ld">'+parts.join(' · ')+'</div>';
       if(l.notes)h+='<div class="ld" style="font-style:italic;margin-top:2px">'+l.notes+'</div>';
@@ -679,11 +836,13 @@ function renderBench(){
 }
 
 function doExport(){
-  var rows=[['Date','Week','Day','Exercise','Sets','Reps','Weight (lbs)','Time (sec)','RPE','Notes']];
+  var rows=[['Date','Week','Day','Exercise','Sets','Reps','Weight (lbs)','Time (sec)','RPE','Duration (min)','Calories','Avg HR','Peak HR','Feel','Ankle (0-5)','Notes']];
   logs.forEach(function(l){
     rows.push([
       l.date,W[l.w]||('Week '+(l.w+1)),l.dl||l.d,l.e,
       l.sets||'',l.reps||'',l.weight||'',l.time||'',l.rpe||'',
+      l.sportDur||'',l.sportCal||'',l.sportHR||'',l.sportPeak||'',l.sportFeel||'',
+      (l.sportAnkle!==undefined&&l.sportAnkle!=='')?l.sportAnkle:'',
       '"'+(l.notes||'').replace(/"/g,'""')+'"'
     ]);
   });
